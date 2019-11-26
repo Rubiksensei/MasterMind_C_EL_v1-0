@@ -24,16 +24,16 @@ int main()
     //Init historics of inputs and of feedbacks
     initHist(histAns, histHint, cWaiting);
 
-    //print rules and indications
+    //Prints rules and indications
     rules(cWrong, cAlmost, cGood);
 
-    //Print both historics
+    //Prints both historics
     printHist(histAns, histHint);
 
     //Instructions just for debug
     //printf("code pour debug : %d %d %d %d \n", n1, n2, n3, n4);
 
-    //Read and insert input into inputs historic
+    //Reads and inserts input into inputs historic
     for (round = 0; round < 12; round++)
     {
         scanf("%s", sTry);
@@ -43,7 +43,7 @@ int main()
         system("cls" );
         rules(cWrong, cAlmost, cGood);
 
-        //Checks the current input and fill the feedback historic tab
+        //Checks the current input and fills the feedback historic tab
         checking(histAns, histHint, cWrong, cAlmost, cGood, n1, n2, n3, n4, round);
 
         if (histHint[round][0]==cGood && histHint[round][1]==cGood && histHint[round][2]==cGood && histHint[round][3]==cGood)
@@ -57,6 +57,7 @@ int main()
         //printf("code  debug : %d%d%d%d \n\n", n1, n2, n3, n4);
     }
 
+    //Checks victory condition and indicates if the player won plus additional informations
     if (gameEnd==1)
     {
         printHist(histAns, histHint);
@@ -76,7 +77,9 @@ void initHist(int tabHistAns[12][4], char tabHistHint[12][4], char waiting)
     {
         for (int j = 0; j < 4; j++)
         {
+            //Init the Answers historic
             tabHistAns[i][j]=0;
+            //Init the Hints historic
             tabHistHint[i][j]=waiting;
         }
     }
@@ -89,11 +92,13 @@ void printHist(int tabHistAns[12][4], char tabHistHint[12][4])
     for (i = 0; i < 12; i++)
     {
         printf(" | ");
+        //Prints the left part of the UI with answers and previous answers
         for (j = 0; j < 4; j++)
         {
             printf("%d ", tabHistAns[i][j]);
         }
         printf("| ");
+        //Prints the right part of the UI with hints and previous hints
         for (j = 0; j < 4; j++)
         {
             printf("%c ", tabHistHint[i][j]);
